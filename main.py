@@ -38,13 +38,18 @@ def check_win(coords: (int, int)):
 
     return False
 
+
+def print_field():
+    for y in game_state:
+        print(*y)
+
+
 def game_loop():
     current_player = ("X", "O")
     print(step_help)
 
     while True:
-        for y in game_state:
-            print(*y)
+        print_field()
         while True:
             next_step = last_step = query_input(current_player[0])
             if game_state[next_step[0]][next_step[1]] == "-":
@@ -54,8 +59,7 @@ def game_loop():
                 print(f"field at {next_step[0]}, {next_step[1]} is taken")
         if check_win(last_step):
             print(f"{current_player[0]} has won! ")
-            for y in game_state:
-                print(*y)
+            print_field()
             break
 
         current_player = (current_player[1], current_player[0])
